@@ -10,20 +10,20 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker compose build'
+                sh '/usr/local/bin/docker compose build'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker compose down || true'
-                sh 'docker compose up -d'
+                sh '/usr/local/bin/docker compose down || true'
+                sh '/usr/local/bin/docker compose up -d'
             }
         }
 
         stage('Check Containers') {
             steps {
-                sh 'docker ps'
+                sh '/usr/local/bin/docker ps'
             }
         }
     }
