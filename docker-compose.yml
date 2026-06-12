@@ -1,0 +1,17 @@
+services:
+  mongo:
+    image: mongo:5
+    container_name: student-mongo
+    ports:
+      - "27017:27017"
+
+  backend:
+    build: ./backend
+    container_name: student-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/studentdb
+      - PORT=3001
+    depends_on:
+      - mongo
